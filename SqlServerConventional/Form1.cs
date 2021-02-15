@@ -17,12 +17,18 @@ namespace SqlServerConventional
         {
             InitializeComponent();
             
+            DataOperations.ConnectionFinished += DataOperationsConnectionFinished;
             Shown += OnShown;
         }
 
-        private void OnShown(object sender, EventArgs e)
+        private void DataOperationsConnectionFinished(string timeSpent)
         {
-            LoadData();
+            finishedLabel.Text = timeSpent;
+        }
+
+        private async void OnShown(object sender, EventArgs e)
+        {
+            await LoadData();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -38,9 +44,20 @@ namespace SqlServerConventional
              */
         }
 
-        private void LoadData()
+        /// <summary>
+        /// The Task.Delay is only used to provide time when the
+        /// DataGridView data source gets set to null to show
+        /// that a load operation is being performed. This also
+        /// allows the user interface to finish painting, without
+        /// this the form controls will not appear properly. 
+        /// </summary>
+        /// <returns></returns>
+        private async Task LoadData()
         {
             dataGridView1.DataSource = null;
+
+            await Task.Delay(1000);
+            
             DataOperations.RunWithoutIssues = NoIssuesCheckBox.Checked;
             var table = DataOperations.ReadProducts();
             if (DataOperations.IsSuccessful)
@@ -59,9 +76,9 @@ namespace SqlServerConventional
             NoIssuesCheckBox.Checked = false;
         }
 
-        private void LoadProductsButton_Click(object sender, EventArgs e)
+        private async void LoadProductsButton_Click(object sender, EventArgs e)
         {
-            LoadData();
+            await LoadData();
         }
     }
 }

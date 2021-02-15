@@ -11,6 +11,7 @@ namespace SqlServerConventional.Classes
 {
     public class DataOperations
     {
+        
         private static string _connectionString = 
             "Data Source=.\\sqlexpress;Initial Catalog=NorthWind2020;Integrated Security=True";
 
@@ -18,7 +19,10 @@ namespace SqlServerConventional.Classes
         private static bool HasException { get; set; }
         public static bool IsSuccessful => HasException == false;
         public static string ExceptionMessage { get; set; }
-        
+
+        public delegate void OnConnectionFinished(string timeSpent);
+        public static event OnConnectionFinished ConnectionFinished;
+
         public static DataTable ReadProducts()
         {
             HasException = false;
@@ -33,8 +37,9 @@ namespace SqlServerConventional.Classes
                 using (var cmd = new SqlCommand() {Connection = cn})
                 {
                     cmd.CommandText = SelectStatement();
-                    
-                    Debug.WriteLine($"Timeout: {cn.ConnectionTimeout}");
+
+                    var timer = new Stopwatch();
+                    timer.Start();
                     
                     try
                     {
@@ -46,6 +51,12 @@ namespace SqlServerConventional.Classes
                         HasException = true;
                         ExceptionMessage = e.Message;
                     }
+
+                    timer.Stop();
+
+                    TimeSpan timeTaken = timer.Elapsed;
+                    ConnectionFinished?.Invoke(timeTaken.ToString(@"m\:ss\.fff"));
+
                 }
             }
 

@@ -32,6 +32,8 @@ namespace SqlServerConventional
             this.NoIssuesCheckBox = new System.Windows.Forms.CheckBox();
             this.LoadProductsButton = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.finishedLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,11 +68,31 @@ namespace SqlServerConventional
             this.dataGridView1.Size = new System.Drawing.Size(774, 228);
             this.dataGridView1.TabIndex = 3;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(289, 269);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(69, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Connect time";
+            // 
+            // finishedLabel
+            // 
+            this.finishedLabel.AutoSize = true;
+            this.finishedLabel.Location = new System.Drawing.Point(364, 269);
+            this.finishedLabel.Name = "finishedLabel";
+            this.finishedLabel.Size = new System.Drawing.Size(34, 13);
+            this.finishedLabel.TabIndex = 7;
+            this.finishedLabel.Text = "00:00";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(796, 309);
+            this.Controls.Add(this.finishedLabel);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.NoIssuesCheckBox);
             this.Controls.Add(this.LoadProductsButton);
             this.Controls.Add(this.dataGridView1);
@@ -90,6 +112,8 @@ namespace SqlServerConventional
         private System.Windows.Forms.CheckBox NoIssuesCheckBox;
         private System.Windows.Forms.Button LoadProductsButton;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label finishedLabel;
     }
 }
 
