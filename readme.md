@@ -6,4 +6,8 @@ This can assist when there is a failure to connection to a SQL-Server where with
 
 :heavy_check_mark: On connection failure the exception is written to a log file.
 
+:heavy_check_mark: SqlServerAsyncRead recommended with connections that may fail.
+
+:x: SqlServerConventional do not use if a connection may fail
+
 # Microsoft TechNet article
