@@ -4,7 +4,7 @@ Code sample which sets a timeout on a SqlConnection which constrains opening a c
 
 This can assist when there is a failure to connection to a SQL-Server where without a timeout will timeout in 30 or more seconds which can be a lifetime for a user.
 
-:heavy_check_mark: On connection failure the exception is written to a log file.
+:heavy_check_mark: On connection failure the exception is written to a log file for SqlServerAsyncRead project.
 
 :green_circle: SqlServerAsyncRead recommended with connections that may fail.
 
