@@ -12,8 +12,7 @@ namespace SqlServerConventional.Classes
     public class DataOperations
     {
         
-        private static string _connectionString = 
-            "Data Source=.\\sqlexpress;Initial Catalog=NorthWind2020;Integrated Security=True";
+        private static string _connectionString = "";
 
         public static bool RunWithoutIssues = false;
         private static bool HasException { get; set; }

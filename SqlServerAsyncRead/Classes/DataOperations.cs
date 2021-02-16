@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -9,7 +8,7 @@ namespace SqlServerAsyncRead.Classes
 {
     public class DataOperations
     {
-        private static string _connectionString = "Data Source=.\\sqlexpress;Initial Catalog=NorthWind2020;Integrated Security=True";
+        private static string _connectionString = "";
 
         public static bool RunWithoutIssues = false;
             
@@ -38,7 +37,10 @@ namespace SqlServerAsyncRead.Classes
                         }
                         catch (TaskCanceledException tce)
                         {
-                            Exceptions.Write(tce, ExceptionLogType.ConnectionFailure, $"Connection string '{_connectionString}'" );
+                            
+                            Exceptions.Write(tce, ExceptionLogType.ConnectionFailure, 
+                                $"Connection string '{_connectionString}'" );
+                            
                             result.ConnectionFailed = true;
                             result.ExceptionMessage = "Connection Failed";
                             return result;
@@ -50,7 +52,7 @@ namespace SqlServerAsyncRead.Classes
                             return result;
                         }
 
-                        result.DataTable.Load(await cmd.ExecuteReaderAsync());
+                        result.DataTable.Load(await cmd.ExecuteReaderAsync(ct));
                     }
 
                 }

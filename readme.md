@@ -11,3 +11,5 @@ This can assist when there is a failure to connection to a SQL-Server where with
 :red_circle: SqlServerConventional do not use if a connection may fail
 
 # Microsoft TechNet article
+
+https://social.technet.microsoft.com/wiki/contents/articles/54260.sql-server-friezes-when-connecting-c.aspx

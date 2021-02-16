@@ -35,7 +35,7 @@ namespace SqlServerAsyncRead
         {
             dataGridView1.DataSource = null;
             
-            await Task.Delay(1000);
+            //await Task.Delay(1000);
             
             await LoadData();
             
