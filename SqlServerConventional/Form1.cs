@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SqlServerConventional.Classes;
+using SqlServerConventional.Extensions;
 
 namespace SqlServerConventional
 {
@@ -57,12 +52,13 @@ namespace SqlServerConventional
             dataGridView1.DataSource = null;
 
             await Task.Delay(1000);
-            
-            DataOperations.RunWithoutIssues = NoIssuesCheckBox.Checked;
+
+            DataOperations.RunWithoutIssues = false; // NoIssuesCheckBox.Checked;
             var table = DataOperations.ReadProducts();
             if (DataOperations.IsSuccessful)
             {
                 dataGridView1.DataSource = table;
+                dataGridView1.FastAutoSizeColumns("ProductName", "CompanyName");
             }
             else
             {
